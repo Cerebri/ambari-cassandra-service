@@ -6,11 +6,11 @@
             <name>Cassandra</name>
             <displayName>Cassandra</displayName>
             <comment>Distributed database</comment>
-            <version>2.1</version>
+            <version>3.0</version>
             <components>
                <component>
                     <name>Cluster-Hosts</name>
-                    <displayName>Cluster Nodes</displayName>
+                    <displayName>Cassandra Cluster Node</displayName>
                     <category>SLAVE</category>
                     <cardinality>1+</cardinality>
                     <commandScript>
@@ -21,7 +21,7 @@
                 </component>
                 <component>
                   <name>Cluster_client</name>
-                  <displayName>Cluster Client</displayName>
+                  <displayName>Cassandra Cluster Client</displayName>
                   <category>CLIENT</category>
                   <cardinality>0+</cardinality>
                   <commandScript>
@@ -53,7 +53,6 @@
                   <config-type>cassandra-env</config-type>
             </configuration-dependencies>
             <restartRequiredAfterChange>true</restartRequiredAfterChange>
-
         </service>
     </services>
 </metainfo>
