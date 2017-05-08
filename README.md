@@ -3,6 +3,8 @@ Ambari service for installing and managing Cassandra on HDP clusters. Apache Cas
 
 Author: [Amey Jain](https://github.com/ajak6)
 
+Revision: [Nic Swart](mailto:nic@cerebri.com)
+
 #### Setup
 - Download HDP 2.3 sandbox VM image (Sandbox_HDP_2.3_1_VMware.ova) from [Hortonworks website](http://hortonworks.com/products/hortonworks-sandbox/)
 - Import Sandbox_HDP_2.3_1_VMware.ova into VMWare and set the VM memory size to 8GB
