@@ -43,6 +43,7 @@ seed_provider_parameters_seeds = config['configurations']['cassandra-site']['see
 hinted_handoff_throttle_in_kb=config['configurations']['cassandra-site']['hinted_handoff_throttle_in_kb']
 max_hints_delivery_threads=config['configurations']['cassandra-site']['max_hints_delivery_threads']
 num_tokens=config['configurations']['cassandra-site']['num_tokens']
+hints_directory=config['configurations']['cassandra-site']['hints_directory']
 hinted_handoff_enabled=config['configurations']['cassandra-site']['hinted_handoff_enabled']
 batchlog_replay_throttle_in_kb=config['configurations']['cassandra-site']['batchlog_replay_throttle_in_kb']
 authenticator=config['configurations']['cassandra-site']['authenticator']
