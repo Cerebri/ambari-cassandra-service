@@ -5,34 +5,36 @@ Author: [Amey Jain](https://github.com/ajak6)
 
 Revision: [Nic Swart](mailto:nic@cerebri.com)
 
-#### Setup
-- Download HDP 2.3 sandbox VM image (Sandbox_HDP_2.3_1_VMware.ova) from [Hortonworks website](http://hortonworks.com/products/hortonworks-sandbox/)
-- Import Sandbox_HDP_2.3_1_VMware.ova into VMWare and set the VM memory size to 8GB
-- Now start the VM
-- After it boots up, find the IP address of the VM and add an entry into your machines hosts file. For example:
+## Add Datastax Repository
+
+Note: This should be done via the Cloudbreak pre-recipes for each node.
+
 ```
-xx.xx.xx.xx sandbox.hortonworks.com sandbox    
-```
-  - Note that you will need to replace the above xx.xx.xx.xx with the IP for your own VM
-  
-- Connect to the VM via SSH (password hadoop)
-```
-ssh root@sandbox.hortonworks.com
+cd /tmp
+yum install git -y
+git clone https://github.com/Cerebri/devops_scripts.git
+cd devops_scripts
+chmod -R -v u+x ./*
+sudo ./HDP_Scripts/hdp_install_repos.sh
 ```
 
-- To download the Cassandra service folder, run below
+## Add CASSANDRA Service
+1. On the Ambari Server, clone the CASSANDRA Service repo to the appropriate place:
 ```
-VERSION=`hdp-select status hadoop-client | sed 's/hadoop-client - \([0-9]\.[0-9]\).*/\1/'`
-sudo git clone https://github.com/Symantec/ambari-cassandra-service.git   /var/lib/ambari-server/resources/stacks/HDP/$VERSION/services/CASSANDRA   
+git clone https://github.com/Cerebri/ambari-cassandra-service.git /var/lib/ambari-server/resources/stacks/HDP/2.6/services/CASSANDRA
 ```
-- Restart Ambari
-```
-#sandbox
-service ambari restart
 
-#non sandbox
-sudo service ambari-server restart
+2. Restart Ambari Server for this new service definition to be picked up.
+
 ```
+service ambari-server stop
+
+sleep 15
+
+service ambari-server start
+```
+
+## Install CASSANDRA Service
 
 - Then you can click on 'Add Service' from the 'Actions' dropdown menu in the bottom left of the Ambari dashboard:
 
@@ -48,7 +50,7 @@ Add the Ip address of all the seed nodes in the ring. It can be 1 to many. Add c
 ![Image](../master/screenshots/Installed-service-config.png?raw=true)
 
 
-#### Remove service
+## Remove service
 
 - To remove the Cassandra service: 
   - Stop the service via Ambari
