@@ -31,9 +31,7 @@ def cassandra():
     configurations = params.config['configurations']['cassandra-site']
 
     File(format("{conf_dir}/cassandra.yaml"),
-       content=Template(
-                        "cassandra.master.yaml.j2", 
-                        configurations = configurations),
+       content=Template("cassandra.master.yaml.j2", configurations = configurations),
        owner=params.cassandra_user,
        group=params.user_group 
     )
